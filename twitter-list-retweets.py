@@ -22,7 +22,8 @@ username  = args.twitter_name
 
 from twitter import *
 
-user = "ideoforms"
+# user = "ideoforms"
+user = username
 
 #-----------------------------------------------------------------------
 # load our API credentials
@@ -57,13 +58,14 @@ def write_to_csv(file_name):
         os.makedirs('csv')
 
     global user
-    results = twitter.statuses.user_timeline(screen_name = user)
+    results = twitter.statuses.user_timeline(screen_name = user, count = 500)
     with open('csv/{}_data.csv'.format(file_name), 'w') as file:
         w = csv.writer(file)
-        w.writerow(["user", "text", "retweets", "retweets_count"])
+        w.writerow(["user", "text", "created_at", "retweets", "retweets_count"])
         for status in results:
             user = unicode_decode(user)
             text = '' if 'text' not in status else unicode_decode(status["text"])
+            created_at = '' if 'created_at' not in status else unicode_decode(status["created_at"])
             #-----------------------------------------------------------------------
             # do a new query: who has retweet this tweet?
             #-----------------------------------------------------------------------
@@ -77,7 +79,8 @@ def write_to_csv(file_name):
             retweeted_records_str = "\n".join(retweeted_records)
             print "~~~~"
             print retweeted_records_str
-            w.writerow([user, text, retweeted_records_str , retweets_count])
+            w.writerow([user, text,created_at, retweeted_records_str , retweets_count])
+            time.sleep(1)
 
 if __name__ == '__main__':
     print "twitter_name = " +  username

@@ -38,8 +38,9 @@ twitter = Twitter(auth = OAuth(config["access_key"], config["access_secret"], co
 # Twitter API docs:
 # https://dev.twitter.com/rest/reference/get/search/tweets
 #-----------------------------------------------------------------------
-# search_words ="lazy dog"
-query = twitter.search.tweets(q = search_words )
+# search_words ="good "
+# count, the number of status
+query = twitter.search.tweets(q = "' "+ search_words + " '", count = 500)
 
 #-----------------------------------------------------------------------
 # How long did this query take?

@@ -37,7 +37,7 @@ twitter = Twitter(auth = OAuth(config["access_key"], config["access_secret"], co
 # twitter API docs: https://dev.twitter.com/rest/reference/get/users/search
 #-----------------------------------------------------------------------
 # search_words = '"New Cross"'
-results = twitter.users.search(q = search_words)
+results = twitter.search.tweets(q = "' "+ search_words + " '" , count = 500)
 
 #-----------------------------------------------------------------------
 # loop through each of the users, and print their details

@@ -58,7 +58,7 @@ def write_to_csv(file_name):
         os.makedirs('csv')
 
     global user
-    results = twitter.statuses.user_timeline(screen_name = user, count = 500)
+    results = twitter.statuses.user_timeline(screen_name = user, count = 100)
     with open('csv/{}_data.csv'.format(file_name), 'w') as file:
         w = csv.writer(file)
         w.writerow(["user", "text", "created_at", "retweets", "retweets_count"])

@@ -58,7 +58,9 @@ def write_to_csv(file_name):
         os.makedirs('csv')
 
     global user
-    results = twitter.statuses.user_timeline(screen_name = user, count = 100)
+    #https://dev.twitter.com/rest/public/rate-limits
+    #Twitter Rate Limit, you can scrape 75 records per window(15mins)
+    results = twitter.statuses.user_timeline(screen_name = user, count = 70)
     with open('csv/{}_data.csv'.format(file_name), 'w') as file:
         w = csv.writer(file)
         w.writerow(["user", "text", "created_at", "retweets", "retweets_count"])
@@ -80,7 +82,7 @@ def write_to_csv(file_name):
             print "~~~~"
             print retweeted_records_str
             w.writerow([user, text,created_at, retweeted_records_str , retweets_count])
-            time.sleep(6)
+            time.sleep(2)
 
 if __name__ == '__main__':
     print "twitter_name = " +  username

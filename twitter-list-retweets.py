@@ -80,7 +80,7 @@ def write_to_csv(file_name):
             print "~~~~"
             print retweeted_records_str
             w.writerow([user, text,created_at, retweeted_records_str , retweets_count])
-            time.sleep(3)
+            time.sleep(6)
 
 if __name__ == '__main__':
     print "twitter_name = " +  username
